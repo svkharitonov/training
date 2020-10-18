@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: "svk-ingress"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  namespace: svk-demo
+spec:
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+        - backend:
+              serviceName: svk-edu-service
+              servicePort: 8080
+          path: /otusapp/skharitonov($|/)(.*)
